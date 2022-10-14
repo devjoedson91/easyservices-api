@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+// yarn prisma migrate dev
+
+model User {
+
+    id String @id @default(uuid())
+    name String
+    email String
+    password String
+    created_at DateTime? @default(now())
+    updated_at DateTime? @default(now())
+
+    @@map("users")
+
+    reserve Reserve[]
+}
+
+model Category {
+
+  id String @id @default(uuid())
+  name String
+  icon String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("categories")
+  services Service[]
+}
+
+model Banner {
+
+  id String @id @default(uuid())
+  banner String
+  photo String
+
+  @@map("banner")
+}
+
+model Service {
+
+  id String @id @default(uuid())
+  name String
+  price String
+  categories Category @relation(fields: [category_id], references: [id])
+
+  @@map("services")
+  category_id String
+
+  reserve Reserve[]
+  time_service TimeService[]
+}
+
+model Reserve {
+
+  id String @id @default(uuid())
+  date DateTime
+  hora String
+  week_day Int
+
+  users User @relation(fields: [user_id], references: [id])
+  services Service @relation(fields: [service_id], references: [id])
+
+  @@map("reserve")
+
+  user_id String
+  service_id String
+
+}
+
+model TimeService {
+
+  id String @id @default(uuid())
+  week_day Int
+  hour String
+
+  services Service @relation(fields: [service_id], references: [id])
+
+  @@map("time_service")
+
+  service_id String
+
+}
