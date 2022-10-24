@@ -5,13 +5,21 @@ class CreateCategoryController {
 
     async handle(req: Request, res: Response) {
 
-        const { name, icon } = req.body;
+        const { name } = req.body;
 
         const createCategoryService = new CreateCategoryService();
 
-        const category = await createCategoryService.execute({ name, icon });
+        if (!req.file) {
+            throw new Error('error upload file');
+        } else {
 
-        return res.json(category);
+            const {originalname, filename: icon} = req.file;
+
+            const category = await createCategoryService.execute({ name, icon });
+
+            return res.json(category);
+
+        }
 
     }
 
