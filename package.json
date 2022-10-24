@@ -5,14 +5,14 @@
     "node": "14.17.4"
   },
   "main": "server.js",
+  "author": "Joedson Ferreira <joedson.devel@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "start": "node src/server.js",
     "dev": "ts-node-dev src/server.ts"
   },
   "keywords": [],
-  "author": "Joedson Ferreira <joedson.devel@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
