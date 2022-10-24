@@ -51,7 +51,7 @@ class CreateUserService {
 
             }
 
-        })
+        });
 
         return user;
     }
