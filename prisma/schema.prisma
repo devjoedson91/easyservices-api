@@ -66,9 +66,9 @@ model Reserve {
 
   id String @id @default(uuid())
   date DateTime
-  hora String
-  week_day Int
-
+  hour String
+  draft Boolean? @default(true)
+  status Boolean? @default(false)
   users User @relation(fields: [user_id], references: [id])
   services Service @relation(fields: [service_id], references: [id])
 
