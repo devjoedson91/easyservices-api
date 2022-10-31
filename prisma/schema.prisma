@@ -19,8 +19,8 @@ model User {
     name String
     email String
     password String
-    created_at DateTime? @default(now())
-    updated_at DateTime? @default(now())
+    created_at DateTime @default(now())
+    updated_at DateTime @default(now())
 
     @@map("users")
 
@@ -32,8 +32,8 @@ model Category {
   id String @id @default(uuid())
   name String
   icon String
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 
   @@map("categories")
   services Service[]
@@ -44,6 +44,8 @@ model Banner {
   id String @id @default(uuid())
   banner String
   photo String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 
   @@map("banner")
 }
@@ -67,10 +69,12 @@ model Reserve {
   id String @id @default(uuid())
   date DateTime
   hour String
-  draft Boolean? @default(true)
-  status Boolean? @default(false)
+  draft Boolean @default(true)
+  status Boolean @default(false)
   users User @relation(fields: [user_id], references: [id])
   services Service @relation(fields: [service_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 
   @@map("reserve")
 

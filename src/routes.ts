@@ -13,6 +13,8 @@ import { CreateServicesController } from "./controllers/service/CreateServicesCo
 import { ListServicesController } from "./controllers/service/ListServicesController";
 import { ListByCategoryController } from "./controllers/service/ListByCategoryController";
 
+import { CreateReserveController } from "./controllers/reserve/CreateReserveController";
+
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
 const router = Router();
@@ -35,5 +37,9 @@ router.get('/category', isAuthenticated, new ListCategoryController().handle);
 router.post('/service', isAuthenticated, new CreateServicesController().handle);
 router.get('/service', isAuthenticated, new ListServicesController().handle);
 router.get('/category/service', isAuthenticated, new ListByCategoryController().handle);
+
+// reserve routes
+
+router.post('/reserve', isAuthenticated, new CreateReserveController().handle);
 
 export { router };
