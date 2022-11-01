@@ -14,6 +14,10 @@ import { ListServicesController } from "./controllers/service/ListServicesContro
 import { ListByCategoryController } from "./controllers/service/ListByCategoryController";
 
 import { CreateReserveController } from "./controllers/reserve/CreateReserveController";
+import { RemoveReserveController } from "./controllers/reserve/RemoveReserveController";
+import { DetailUserReserveController } from "./controllers/reserve/DetailUserReserveController";
+import { FinishReserveController } from "./controllers/reserve/FinishReserveController";
+import { ListReserveController } from "./controllers/reserve/ListReserveController";
 
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
@@ -41,5 +45,9 @@ router.get('/category/service', isAuthenticated, new ListByCategoryController().
 // reserve routes
 
 router.post('/reserve', isAuthenticated, new CreateReserveController().handle);
+router.delete('/reserve', isAuthenticated, new RemoveReserveController().handle);
+router.get('/reserve/detail/user', isAuthenticated, new DetailUserReserveController().handle);
+router.put('/reserve/finish', isAuthenticated, new FinishReserveController().handle);
+router.get('/reserve', isAuthenticated, new ListReserveController().handle);
 
 export { router };
