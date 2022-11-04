@@ -19,6 +19,8 @@ import { DetailUserReserveController } from "./controllers/reserve/DetailUserRes
 import { FinishReserveController } from "./controllers/reserve/FinishReserveController";
 import { ListReserveController } from "./controllers/reserve/ListReserveController";
 
+import { CreateScheduleController } from "./controllers/schedule/CreateScheduleController";
+
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
 const router = Router();
@@ -49,5 +51,7 @@ router.delete('/reserve', isAuthenticated, new RemoveReserveController().handle)
 router.get('/reserve/detail/user', isAuthenticated, new DetailUserReserveController().handle);
 router.put('/reserve/finish', isAuthenticated, new FinishReserveController().handle);
 router.get('/reserve', isAuthenticated, new ListReserveController().handle);
+
+router.post('/schedule', isAuthenticated, new CreateScheduleController().handle);
 
 export { router };

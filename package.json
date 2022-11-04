@@ -8,8 +8,8 @@
   "author": "Joedson Ferreira <joedson.devel@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "start": "node src/server.js",
+    "build": "tsc --build",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev src/server.ts"
   },
   "keywords": [],

@@ -17,8 +17,9 @@ model User {
 
     id String @id @default(uuid())
     name String
-    email String
+    email String @unique
     password String
+    isAdmin Boolean
     created_at DateTime @default(now())
     updated_at DateTime @default(now())
 
@@ -86,7 +87,7 @@ model Reserve {
 model TimeService {
 
   id String @id @default(uuid())
-  week_day Int
+  date String
   hour String
 
   services Service @relation(fields: [service_id], references: [id])
