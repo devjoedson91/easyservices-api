@@ -4,6 +4,7 @@ CREATE TABLE "users" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "admin" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -60,12 +61,15 @@ CREATE TABLE "reserve" (
 -- CreateTable
 CREATE TABLE "time_service" (
     "id" TEXT NOT NULL,
-    "week_day" INTEGER NOT NULL,
+    "date" TEXT NOT NULL,
     "hour" TEXT NOT NULL,
     "service_id" TEXT NOT NULL,
 
     CONSTRAINT "time_service_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- AddForeignKey
 ALTER TABLE "services" ADD CONSTRAINT "services_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
