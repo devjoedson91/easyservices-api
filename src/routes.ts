@@ -20,6 +20,7 @@ import { FinishReserveController } from "./controllers/reserve/FinishReserveCont
 import { ListReserveController } from "./controllers/reserve/ListReserveController";
 
 import { CreateScheduleController } from "./controllers/schedule/CreateScheduleController";
+import { ListScheduleByServiceController } from "./controllers/schedule/ListScheduleByServiceController";
 
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
@@ -53,5 +54,6 @@ router.put('/reserve/finish', isAuthenticated, new FinishReserveController().han
 router.get('/reserve', isAuthenticated, new ListReserveController().handle);
 
 router.post('/schedule', isAuthenticated, new CreateScheduleController().handle);
+router.get('/schedule/service', isAuthenticated, new ListScheduleByServiceController().handle);
 
 export { router };
