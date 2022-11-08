@@ -10,6 +10,9 @@ class ListScheduleByService {
         const findByService = await prismaClient.timeService.findMany({
             where: {
                 service_id: service_id
+            },
+            orderBy: {
+                hour: 'asc'
             }
         });
 
